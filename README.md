@@ -43,4 +43,4 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
 
   * Feito isso, é só clicar em *Create Security Group*.  
 
-**3**. Criar uma **instância EC2 (Amazon Linux)** e associá-la à VPC e Security Group.  
+**3**. Criar uma **instância EC2 (Amazon Linux)** e associá-la à VPC e ao Security Group.

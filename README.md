@@ -13,6 +13,9 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
 
 ### 1️⃣ **Pré-requisitos**
 - **Conta AWS** com permissões de administração.
+- **Conta no Discord** para testarmos o sistema de notificações
+- **Ter instalado o PUTTY** para acesssarmos a instancia via SSH
+
   
 ### 2️⃣ **Provisionamento da Infraestrutura**
 **1**. Criar uma **VPC** (Virtual Private Cloud) é como uma rede LAN (Local Area Network) na nuvem, mas com mais flexibilidade e recursos de isolamento.

@@ -44,3 +44,24 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
   * Feito isso, é só clicar em *Create Security Group*.  
 
 **3**. Criar uma **instância EC2 (Amazon Linux)** e associá-la à VPC e ao Security Group.
+  * Na barra de pesquisa do console AWS, pesquise por EC2, click em *Intances* e depois em Launch instances.
+  * No primeiro campo escolhemos as tags para nossa instancia EC2.
+  * No segundo campo escolhemos a AMI que é uma imagem pré configurada da instancia EC2, ela contem o SO e outras configurações.
+     * Nesse caso vamos utilizar a Amazon Linux 2023.
+  * No terceiro campo temos o tipo da instancia, vamos selecionar a "t2.micro".
+  * A *Key pair* são as chave de acesso para a isntancia EC2.
+     * Click em *Create new key pair* e escolha um nome para sua chave, o tipo vai ser *RSA* e o formato vai ser *.ppk*
+  * No quarto campo temos a congiguração de *Network settings*, aqui temos algumas configurações importantes.
+     * *VPC* - Vamos selecionar a VPC criada anteriormente.
+     * *Subnet* - Seleciona uma subnet publica.
+     * *Auto-assign public IP* - Click em *Enable* para habilitar o IP público da nossa instancia.
+     * *Firewall (security groups)* - Marque a opção *Select existing security group*
+        * *Common security groups* - Selecione o security group criado anteriormente.
+  * *Configure storage*
+     * É a configuracao do armazenamento
+        * Vamos utilizar 8 GB e selecionar o tipo *GP3*
+  * *Advanced details*
+    * Aqui há diversas configurações, mas o que vamos configurar é a chamada *User Data*, é um script que é executado automaticamnete ao iniciar a instancia.
+        * O script usado para o projeto é esse:
+        
+      

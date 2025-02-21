@@ -142,4 +142,5 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
  * Veja em tempo real as últimas linhas do log. ```sudo tail -f /var/log/monitoramento.log ```
 
 **7** Testando a implementação.
+
     

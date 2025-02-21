@@ -62,11 +62,11 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
         * Vamos utilizar 8 GB e selecionar o tipo *GP3*.
   * *Advanced details*:
     * Aqui há diversas configurações, mas o que vamos configurar é a chamada *User Data*, que é um script executado automaticamente ao iniciar a instância.
-        * O script usado para o projeto está neste repositório como o nome "ScriptUserData.txt"
+        * O script usado para o projeto está neste repositório como o nome "UserData.txt"
 
 * Clicando em *Launch instance*, nossa instância será criada.
   
-**4** Acessando a instância via SSS.
+**4** Acessando a instância via SSH.
   * Antes de acessar a instância click em *Security*, depois em *Security Group* e altere as *Inbound roles*
   * Na regra de SSH selecionamos a opção *My Ip*, isso vai permitir que acessemos a isntancia com o nosso IP.
   * Com a instância selecionada copiamos o *Public IPv4 address*.

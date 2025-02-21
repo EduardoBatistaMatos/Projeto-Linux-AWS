@@ -74,22 +74,79 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
      * Click em *SSH < Auth < Credentials*
      * Selecionando o botão *browser* ache Key Pair na sua máquina.
   * Agora sim podemos conectar a instância.
+  * O usuário padrão é ec2-user.
 
 **5** Configurando o servidor para reiniciar automaticamente.
   * Siga os seguintes passos com os seguintes comandos:
-  * Caminhe até o diretório *system*
-     * ```cd /usr/lib/systemd/system/ ```
-     * ```sudo nano nginx.service```
+  * Caminhe até o diretório *system*: ```cd /usr/lib/systemd/system/ ```
+  * Edite o arquivo nginx.service: ```sudo nano nginx.service```
+  * Insira o comando abaixo:
      * ```
        Restart=always
-       RestartSec=5s ```
-     * ```sudo systemctl daemon-reload```
-     * ```sudo systemctl enable nginx```
-     * ```sudo systemctl restart nginx```
+       RestartSec=5s
+  * O arquivo ficara dessa forma:
+       ![image](https://github.com/user-attachments/assets/ffb4f700-fc8b-4fde-aec3-d4227a55d864)
+  * Para salvar e sair basta dar os comando ``CTRL + O``, ``Enter`` e ``CTRL + X``.
+  * Recarregue as configurações do systemd após alterações: ```sudo systemctl daemon-reload```
+  * Ative o Nginx para iniciar automaticamente no boot: ```sudo systemctl enable nginx```
+  * Reinicia o serviço Nginx: ```sudo systemctl restart nginx```
+  * Encerre o serviço Nginx, Pause por 7 segundos e Verifique o status do serviço Nginx.
      * ```
        sudo systemctl kill nginx
        sudo sleep 7
        sudo systemctl status nginx
+
+  * A  saída do comando devera ser assim:
+     ![image](https://github.com/user-attachments/assets/01bbcfd5-9ce6-4513-9ab7-9deaa34d3400)
+   
 **6** Configurando o sistema de notificações via Discord.
+  * Antes de tudo precisamos instalar o CROND pois por padrão ele não vem instalado no Amazon Linux, para fazer a instalação siga os seguintes passos:
+ * Instale o crond: ```sudo yum install cronie```
+ * Inicie o serviço: ```sudo systemctl start crond```
+ * Ative o crond para iniciar automaticamente no boot: ```sudo systemctl enable crond```
+ * Verifique o status do serviço: ```sudo systemctl status crond```
+ * A saída do comando deve ser assim:
+    ![image](https://github.com/user-attachments/assets/0bd80955-8199-491f-a3b0-5aa2cd443c31)
+ * Com o Discord aberto, clique no ícone de "+" para adicionar um novo servidor.
+
+ * Clique em "Criar o meu", clique em "Para meus amigos e eu", escolha o nome desejado e clique em "Criar".
+
+ * Selecione "Configurações do servidor", no menu à esquerda, clique em "Integrações", depois em "Webhooks", clique em "Novo webhook", dê um nome a ele e clique em "Copiar a URL".
+
+ * Abra um bloco de notas e cole a URL do webhook.
+ 
+ * No terminal Linux sigua esses passos:
+ 	 *Crie o arquivo `monitoramento.sh` em `/var/log/`:
+   		```sudo nano /var/log/monitoramento.sh```
+ 
+ 	*De permissão de leitura e escrita para todos no arquivo `monitoramento.log`:
+ 		```sudo chmod 666 /var/log/monitoramento.log```
+ 
+ 	*Crie o diretório `monitoramento` em `/opt/`:
+   		```sudo mkdir /opt/monitoramento```
+ 
+ 	*Crie ou edita o script `monitorar_site.sh` em `/opt/monitoramento/`:
+ 		```sudo nano /opt/monitoramento/monitorar_site.sh```
+ 
+ * Copie o script com o nome ``discord_logs` cole no arquivo e salve as alterações.
+ 
+ 
+ 
+ * Conceda permissão de execução ao script.
+ 	*```sudo chmod +x /opt/monitoramento/monitorar_site.sh ```
+ 
+ 
+ * Abra o editor do cron para agendar tarefas automáticas.
+ 	*```crontab -e ```
+ 
+ 
+ *Agende o script para rodar a cada minuto.
+ 	*```*/1 * * * * /opt/monitoramento/monitorar_site.sh```
+ 
+ *Veja em tempo real as últimas linhas do log.
+ 	*```sudo tail -f /var/log/monitoramento.log ```
+
+
+
 **7** Testando a implementação.
     

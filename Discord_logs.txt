@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# URL do site a ser monitorado
+SITE_URL="http://COLE O IP DA SUA MAQUINA AQUI/"
+
+# Webhook do Discord
+DISCORD_WEBHOOK_URL="COLE A URL DO SEU WEBHHOK AQUI"
+
+# Arquivo de log
+LOG_FILE="/var/log/monitoramento.log"  # Corrigido o caminho para o diretório completo
+
+DATE=$(date "+%Y-%m-%d %H:%M:%S")
+
+# Verifica se o site está acessível
+HTTP_STATUS=$(curl -s --head --request GET "$SITE_URL" | grep HTTP | awk '{print $2}')
+
+# Verifica se o código de status HTTP está entre 200 e 399 (site acessível)
+if [[ "$HTTP_STATUS" -ge 200 && "$HTTP_STATUS" -le 399 ]]; then
+    echo "$DATE: O site está online." >> "$LOG_FILE"
+else
+    echo "$DATE: O site está fora do ar! Enviando alerta para o Discord." >> "$LOG_FILE"
+
+    # Mensagem JSON para o Discord
+    JSON_PAYLOAD=$(cat <<EOF
+{
+  "username": "Monitor de Site",
+  "content": "🚨 O site **$SITE_URL** está fora do ar! 🚨"
+}
+EOF
+)
+
+    # Envia alerta para o Discord
+    curl -H "Content-Type: application/json" -X POST -d "$JSON_PAYLOAD" "$DISCORD_WEBHOOK_URL"
+fi
+
+
+

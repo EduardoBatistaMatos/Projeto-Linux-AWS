@@ -144,4 +144,29 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
 * Clicando em *Launch instance*, nossa instância será criada.
   
 **4** Acessando a instância via SSS.
-  * 
+  * Antes de acessar a instância click em *Security*, depois em *Security Group* e altere as *Inbound roles*
+  * Na regra de SSH selecionamos a opção *My Ip*, isso vai permitir que acessemos a isntancia com o nosso IP.
+  * Com a instância selecionada copiamos o *Public IPv4 address*.
+  * Cole o Ip no PUTTY e antes de conectarmos devemos seguir esses passos:
+     * Click em *SSH < Auth < Credentials*
+     * Selecionando o botão *browser* ache Key Pair na sua máquina.
+  * Agora sim podemos conectar a instância.
+
+**5** Configurando o servidor para reiniciar automaticamente.
+  * Siga os seguintes passos com os seguintes comandos:
+  * Caminhe até o diretório *system*
+     * ```cd /usr/lib/systemd/system/ ```
+     * ```sudo nano nginx.service```
+     * ```
+       Restart=always
+       RestartSec=5s ```
+     * ```sudo systemctl daemon-reload```
+     * ```sudo systemctl enable nginx```
+     * ```sudo systemctl restart nginx```
+     * ```
+       sudo systemctl kill nginx
+       sudo sleep 7
+       sudo systemctl status nginx
+**6** Configurando o sistema de notificações via Discord.
+**7** Testando a implementação.
+    

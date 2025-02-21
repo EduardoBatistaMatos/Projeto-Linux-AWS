@@ -126,10 +126,10 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
  	* Crie o diretório `monitoramento` em `/opt/`:
    		```sudo mkdir /opt/monitoramento```
  
- 	* Crie ou edita o script `monitorar_site.sh` em `/opt/monitoramento/`:
+ 	* Crie o arquivo `monitorar_site.sh` em `/opt/monitoramento/`:
  		```sudo nano /opt/monitoramento/monitorar_site.sh```
  
- * Copie o script ``discord_logs` deste repositório e cole no arquivo e salve as alterações.
+ * Copie o script *Discord_logs.txt* deste repositório cole no arquivo e salve as alterações.
  
  * Conceda permissão de execução ao script.
  	*```sudo chmod +x /opt/monitoramento/monitorar_site.sh ```

@@ -85,7 +85,8 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
        Restart=always
        RestartSec=5s
   * O arquivo ficara dessa forma:
-       ![image](https://github.com/user-attachments/assets/ffb4f700-fc8b-4fde-aec3-d4227a55d864)
+
+      ![image](https://github.com/user-attachments/assets/ffb4f700-fc8b-4fde-aec3-d4227a55d864)
   * Para salvar e sair basta dar os comando ``CTRL + O``, ``Enter`` e ``CTRL + X``.
   * Recarregue as configurações do systemd após alterações: ```sudo systemctl daemon-reload```
   * Ative o Nginx para iniciar automaticamente no boot: ```sudo systemctl enable nginx```
@@ -116,37 +117,29 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
  * Abra um bloco de notas e cole a URL do webhook.
  
  * No terminal Linux sigua esses passos:
- 	 *Crie o arquivo `monitoramento.sh` em `/var/log/`:
+ 	 * Crie o arquivo `monitoramento.sh` em `/var/log/`:
    		```sudo nano /var/log/monitoramento.sh```
  
- 	*De permissão de leitura e escrita para todos no arquivo `monitoramento.log`:
+ 	* De permissão de leitura e escrita para todos no arquivo `monitoramento.log`:
  		```sudo chmod 666 /var/log/monitoramento.log```
  
- 	*Crie o diretório `monitoramento` em `/opt/`:
+ 	* Crie o diretório `monitoramento` em `/opt/`:
    		```sudo mkdir /opt/monitoramento```
  
- 	*Crie ou edita o script `monitorar_site.sh` em `/opt/monitoramento/`:
+ 	* Crie ou edita o script `monitorar_site.sh` em `/opt/monitoramento/`:
  		```sudo nano /opt/monitoramento/monitorar_site.sh```
  
- * Copie o script com o nome ``discord_logs` cole no arquivo e salve as alterações.
- 
- 
+ * Copie o script ``discord_logs` deste repositório e cole no arquivo e salve as alterações.
  
  * Conceda permissão de execução ao script.
  	*```sudo chmod +x /opt/monitoramento/monitorar_site.sh ```
  
- 
  * Abra o editor do cron para agendar tarefas automáticas.
  	*```crontab -e ```
  
+ * Agende o script para rodar a cada minuto. ```*/1 * * * * /opt/monitoramento/monitorar_site.sh```
  
- *Agende o script para rodar a cada minuto.
- 	*```*/1 * * * * /opt/monitoramento/monitorar_site.sh```
- 
- *Veja em tempo real as últimas linhas do log.
- 	*```sudo tail -f /var/log/monitoramento.log ```
-
-
+ * Veja em tempo real as últimas linhas do log. ```sudo tail -f /var/log/monitoramento.log ```
 
 **7** Testando a implementação.
     

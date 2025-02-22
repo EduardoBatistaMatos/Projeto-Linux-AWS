@@ -117,20 +117,21 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
 
  * Abra um bloco de notas e cole a URL do webhook.
  
- * No terminal Linux sigua esses passos:
- 	 * Crie o arquivo `monitoramento.sh` em `/var/log/`:
-   		```sudo nano /var/log/monitoramento.sh```
+ * No terminal Linux siga esses passos:
+   
+   *Caminhe até o diretório log:   ``` cd var/log	```
+   
+ 	 * Crie o arquivo monitoramento.sh:   ```nano monitoramento.sh```
+     
+   * Volte ao diretório barra: 	```cd /	```
+   
+ 	 * De permissão de leitura e escrita para todos no arquivo monitoramento.log:   ```sudo chmod 666 /var/log/monitoramento.log```
  
- 	* De permissão de leitura e escrita para todos no arquivo `monitoramento.log`:
- 		```sudo chmod 666 /var/log/monitoramento.log```
+ 	 * Crie o diretório `monitoramento` em `/opt/`:   ```sudo mkdir /opt/monitoramento```
+    
+ 	 * Crie o arquivo monitorar_site.sh  em /opt/monitoramento/:   ```sudo nano /opt/monitoramento/monitorar_site.sh```
  
- 	* Crie o diretório `monitoramento` em `/opt/`:
-   		```sudo mkdir /opt/monitoramento```
- 
- 	* Crie o arquivo `monitorar_site.sh` em `/opt/monitoramento/`:
- 		```sudo nano /opt/monitoramento/monitorar_site.sh```
- 
- * Copie o script *Discord_logs.txt* deste repositório cole no arquivo e salve as alterações.
+   * Copie o script *Discord_logs.txt* deste repositório cole no arquivo e salve as alterações.
  
  * Conceda permissão de execução ao script.
  	*```sudo chmod +x /opt/monitoramento/monitorar_site.sh ```

@@ -90,6 +90,7 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
   * Para salvar e sair basta dar os comando ``CTRL + O``, ``Enter`` e ``CTRL + X``.
   * Recarregue as configurações do systemd após alterações: ```sudo systemctl daemon-reload```
   * Ative o Nginx para iniciar automaticamente no boot: ```sudo systemctl enable nginx```
+  * Inicia o serviço Nginx:   ```sudo systemctl start nginx```
   * Reinicia o serviço Nginx: ```sudo systemctl restart nginx```
   * Encerre o serviço Nginx, Pause por 7 segundos e Verifique o status do serviço Nginx.
      * ```

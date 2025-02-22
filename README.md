@@ -119,11 +119,11 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
  
  * No terminal Linux siga esses passos:
    
-   *Caminhe até o diretório log:   ``` cd var/log	```
+   *Caminhe até o diretório log:   ``` cd var/log```
    
  	 * Crie o arquivo monitoramento.sh:   ```nano monitoramento.sh```
      
-   * Volte ao diretório barra: 	```cd /	```
+   * Volte ao diretório barra: 	```cd /```
    
  	 * De permissão de leitura e escrita para todos no arquivo monitoramento.log:   ```sudo chmod 666 /var/log/monitoramento.log```
  

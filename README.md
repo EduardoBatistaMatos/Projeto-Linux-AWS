@@ -121,7 +121,7 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
    
    *Caminhe até o diretório log:   ``` cd var/log```
    
- 	 * Crie o arquivo monitoramento.sh:   ```nano monitoramento.sh```
+ 	 * Crie e salve o arquivo monitoramento.sh :   ```sudo nano monitoramento.sh```
      
    * Volte ao diretório barra: 	```cd /```
    

@@ -121,23 +121,23 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
    
    *Caminhe até o diretório log:   ``` cd var/log```
    
- 	 * Crie e salve o arquivo monitoramento.sh :   ```sudo nano monitoramento.sh```
+ 	 * Crie e salve o arquivo monitoramento.sh :   ```sudo nano monitoramento.log```
+     
+   * De permissão de leitura e escrita para todos no arquivo monitoramento.log:   ```sudo chmod 666 monitoramento.log```
      
    * Volte ao diretório barra: 	```cd /```
    
- 	 * De permissão de leitura e escrita para todos no arquivo monitoramento.log:   ```sudo chmod 666 /var/log/monitoramento.log```
- 
- 	 * Crie o diretório `monitoramento` em `/opt/`:   ```sudo mkdir /opt/monitoramento```
+ 	 * Crie o diretório monitoramento em /opt/:   ```sudo mkdir /opt/monitoramento```
+  
+   * Caminhe até o diretório monitoramento: ```cd /opt/monitoramento/ ```
     
- 	 * Crie o arquivo monitorar_site.sh  em /opt/monitoramento/:   ```sudo nano /opt/monitoramento/monitorar_site.sh```
+ 	 * Crie o arquivo monitorar_site.sh  em /opt/monitoramento/:   ```sudo nano monitorar_site.sh```
  
-   * Copie o script *Discord_logs.txt* deste repositório cole no arquivo e salve as alterações.
+   * Copie o script *Discord_logs.txt* colocando o ip e a url do seu Discord, cole no arquivo e salve as alterações.
  
- * Conceda permissão de execução ao script.
- 	*```sudo chmod +x /opt/monitoramento/monitorar_site.sh ```
+ * Conceda permissão de execução ao script.  ```sudo chmod +x /opt/monitoramento/monitorar_site.sh ```
  
- * Abra o editor do cron para agendar tarefas automáticas.
- 	*```crontab -e ```
+ * Abra o editor do cron para agendar tarefas automáticas.  ```crontab -e ```
  
  * Agende o script para rodar a cada minuto. ```*/1 * * * * /opt/monitoramento/monitorar_site.sh```
  

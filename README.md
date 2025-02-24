@@ -108,30 +108,18 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
   * Clique em "Criar o meu", clique em "Para meus amigos e eu", escolha o nome desejado e clique em "Criar".
   * Selecione "Configurações do servidor", no menu à esquerda, clique em "Integrações", depois em "Webhooks", clique em "Novo webhook", dê um nome a ele e clique em "Copiar a URL".
   * Abra um bloco de notas e cole a URL do webhook.
- 
- * No terminal Linux, siga esses passos:
-   
-   * Caminhe até o diretório de log: ```cd /var/log```
-   
-   * Crie e salve o arquivo monitoramento.sh:   ```sudo nano monitoramento.log```
-     
-   * Dê permissão de leitura e escrita para todos no arquivo monitoramento.log:   ```sudo chmod 666 monitoramento.log```
-     
-   * Volte ao diretório raiz: 	```cd /```
-   
-   * Crie o diretório monitoramento em /opt/:   ```sudo mkdir /opt/monitoramento```
-  
-   * Caminhe até o diretório monitoramento: ```cd /opt/monitoramento/```
-    
-   * Crie o arquivo monitorar_site.sh em /opt/monitoramento/:   ```sudo nano monitorar_site.sh```
- 
-   * Copie o script *Discord_logs.bash* colocando o IP e a URL do seu Discord, cole no arquivo e salve as alterações.
- 
- * Conceda permissão de execução ao script: ```sudo chmod +x /opt/monitoramento/monitorar_site.sh```
- 
- * Abra o editor do cron para agendar tarefas automáticas:  ```crontab -e```
- 
- * Agende o script para rodar a cada minuto: ```*/1 * * * * /opt/monitoramento/monitorar_site.sh```
+  * No terminal Linux, siga esses passos:   
+  * Caminhe até o diretório de log: ```cd /var/log```  
+  * Crie e salve o arquivo monitoramento.sh:   ```sudo nano monitoramento.log```
+  * Dê permissão de leitura e escrita para todos no arquivo monitoramento.log:   ```sudo chmod 666 monitoramento.log```
+  * Volte ao diretório raiz: 	```cd /``` 
+  * Crie o diretório monitoramento em /opt/:   ```sudo mkdir /opt/monitoramento```
+  * Caminhe até o diretório monitoramento: ```cd /opt/monitoramento/```
+  * Crie o arquivo monitorar_site.sh em /opt/monitoramento/:   ```sudo nano monitorar_site.sh```
+  * Copie o script *Discord_logs.bash* colocando o IP e a URL do seu Discord, cole no arquivo e salve as alterações.
+  * Conceda permissão de execução ao script: ```sudo chmod +x /opt/monitoramento/monitorar_site.sh```
+  * Abra o editor do cron para agendar tarefas automáticas:  ```crontab -e```
+  * Agende o script para rodar a cada minuto: ```*/1 * * * * /opt/monitoramento/monitorar_site.sh```
 
 **7️⃣ Como funciona o Script de monitoramento.**
  * A explicação do script se encontra nele mesmo em forma de comentário.
@@ -156,4 +144,4 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
      * Veja em tempo real as últimas linhas do log: ```sudo tail -f /var/log/monitoramento.log```
      * Abra o Discord e aguarde até um minuto para o sistema de alertas enviar a seguinte notificação:
        ![b32f2fe8-b217-4c52-8b80-4584f517ec2f](https://github.com/user-attachments/assets/3957bda5-2652-4ab0-b2fd-448e1ef44585)
- * Para iniciar o servidor Nginx novamente, basta seguir o seguinte comando: ```sudo systemctl start nginx```.
+ * Para iniciar o servidor Nginx novamente, basta inserir o seguinte comando: ```sudo systemctl start nginx```

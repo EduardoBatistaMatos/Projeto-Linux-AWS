@@ -10,15 +10,16 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
 - **EC2 (Amazon Linux)** → Instância principal do servidor.  
 - **Nginx** → Servidor web configurado na instância.  
 - **Webhook do Discord** → Notificações automáticas sobre o status do servidor.  
-
-### 1️⃣ **Pré-requisitos**  
+  
+###   **Pré-requisitos**  
 - **Conta AWS** com permissões de administração.  
 - **Conta no Discord** para testarmos o sistema de notificações.  
 - **Ter instalado o PuTTY** para acessar a instância via SSH.  
 
-### 2️⃣ **Provisionamento da Infraestrutura**  
+###  **Provisionamento da Infraestrutura**  
 
-**1**. Criar uma **VPC** (Virtual Private Cloud), que é como uma rede LAN (Local Area Network) na nuvem, mas com mais flexibilidade e recursos de isolamento.  
+**1️⃣ Criar uma VPC (Virtual Private Cloud).**
+  * É semelhante a uma rede LAN (Local Area Network) na nuvem, mas com mais flexibilidade e recursos de isolamento.  
   * Na barra de pesquisa do console AWS, pesquise por VPC, clique em *Your VPCs* e depois no botão *Create VPC*.  
   * Agora vamos configurar a VPC. Primeiro, temos duas opções: *VPC only*, que podemos configurar mais especificamente, e *VPC and more*, que vem previamente configurada. Vamos selecionar a segunda opção. Logo abaixo, há um *checkbox* e um campo de texto para adicionarmos uma etiqueta que será usada para nomear todos os recursos na VPC. Nesse caso, vamos marcar o *checkbox* para gerar automaticamente as etiquetas e colocar o nome desejado.  
   * Por padrão, a VPC já vem com duas subnets públicas e duas subnets privadas em duas regiões diferentes, com um *Internet Gateway* conectado às sub-redes públicas, mas vale conferir.  
@@ -26,7 +27,8 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
     ![image](https://github.com/user-attachments/assets/5de410da-9847-48f8-98fe-d999febc1cbb)  
   * Agora é só clicar em *Create VPC*, esperar carregar e pronto, a VPC está criada.  
 
-**2**. Criar um **Security Group**, que é basicamente um firewall que controla as regras de entrada e saída da instância EC2. Aqui, vamos permitir os tráfegos HTTPS/HTTP e SSH.  
+**2️⃣ Criar um Security Group**.
+  * É basicamente um firewall que controla as regras de entrada e saída da instância EC2. Aqui, vamos permitir os tráfegos HTTPS/HTTP e SSH.  
   * Na barra de pesquisa do console AWS, pesquise por EC2. Dentro das opções de *Network & Security*, clique em *Security Groups* e depois no botão *Create Security Group*.  
   * No primeiro campo, colocamos o nome do Security Group, no segundo campo, colocamos a descrição e, no terceiro, a VPC à qual ele será associado (no caso, selecionamos a VPC criada anteriormente).  
   * Abaixo, temos as *Inbound rules* e *Outbound rules*, que são as regras de entrada e saída.  
@@ -43,7 +45,7 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
 
   * Feito isso, é só clicar em *Create Security Group*.  
 
-**3**. Criar uma **instância EC2 (Amazon Linux)** e associá-la à VPC e ao Security Group.
+**3️⃣ Criar uma instância EC2 (Amazon Linux) e associá-la à VPC e ao Security Group.**
   * Na barra de pesquisa do console AWS, pesquise por EC2, clique em *Instances* e depois em *Launch instances*.
   * No primeiro campo escolhemos as tags para nossa instância EC2.
   * No segundo campo escolhemos a AMI, que é uma imagem pré-configurada da instância EC2, ela contém o SO e outras configurações.
@@ -66,7 +68,7 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
 
 * Clicando em *Launch instance*, nossa instância será criada.
   
-**4** Acessando a instância via SSH.
+**4️⃣ Acessando a instância via SSH.**
   * Antes de acessar a instância click em *Security*, depois em *Security Group* e altere as *Inbound roles*
   * Na regra de SSH selecionamos a opção *My Ip*, isso vai permitir que acessemos a isntancia com o nosso IP.
   * Com a instância selecionada copiamos o *Public IPv4 address*.
@@ -76,7 +78,7 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
   * Agora sim podemos conectar a instância.
   * O usuário padrão é ec2-user.
 
-**5** Configurando o servidor para reiniciar automaticamente.
+**5️⃣ Configurando o servidor para reiniciar automaticamente.**
   * Siga os seguintes passos com os seguintes comandos:
   * Caminhe até o diretório *system*: ```cd /usr/lib/systemd/system/ ```
   * Edite o arquivo nginx.service: ```sudo nano nginx.service```
@@ -92,16 +94,8 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
   * Ative o Nginx para iniciar automaticamente no boot: ```sudo systemctl enable nginx```
   * Inicia o serviço Nginx:   ```sudo systemctl start nginx```
   * Reinicia o serviço Nginx: ```sudo systemctl restart nginx```
-  * Encerre o serviço Nginx, Pause por 7 segundos e Verifique o status do serviço Nginx.
-     * ```
-       sudo systemctl kill nginx
-       sudo sleep 7
-       sudo systemctl status nginx
-
-  * A  saída do comando devera ser assim:
-     ![image](https://github.com/user-attachments/assets/01bbcfd5-9ce6-4513-9ab7-9deaa34d3400)
-   
-**6** Configurando o sistema de notificações via Discord.
+     
+**6️⃣ Configurando o sistema de notificações via Discord.**
   * Antes de tudo precisamos instalar o CROND pois por padrão ele não vem instalado no Amazon Linux, para fazer a instalação siga os seguintes passos:
  * Instale o crond: ```sudo yum install cronie```
  * Inicie o serviço: ```sudo systemctl start crond```
@@ -140,9 +134,36 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
  * Abra o editor do cron para agendar tarefas automáticas.  ```crontab -e ```
  
  * Agende o script para rodar a cada minuto. ```*/1 * * * * /opt/monitoramento/monitorar_site.sh```
- 
- * Veja em tempo real as últimas linhas do log. ```sudo tail -f /var/log/monitoramento.log ```
 
-**7** Testando a implementação.
+**7️⃣ Como funciona o Script.**
+
+**8️⃣ Testando a implementação.**
+
+ * No browser do seu navegador cole o ip da sua instância.
+ * Este ip devera retornar esse site:
+    ![image](https://github.com/user-attachments/assets/a35e47be-6829-4e64-88cc-4cae28d46dff)
+   
+ * Para validar se o script do de reinicialização está funcionando corretamente siga estes passos:
+     * Encerre o serviço Nginx com o comando kill, pause por 7 segundos e verifique o status do serviço Nginx.
+     * ```
+       sudo systemctl kill nginx
+       sudo sleep 7
+       sudo systemctl status nginx
+     * A  saída do comando devera ser assim:
+     ![image](https://github.com/user-attachments/assets/01bbcfd5-9ce6-4513-9ab7-9deaa34d3400)
+
+ * Para validar se o sistema de monitoramento está funcionando corretamente siga esses passos:
+     * Encerre o serviço Nginx com o comando stop: ```sudo systemctl stop nginx ```
+     * Veja em tempo real as últimas linhas do log. ```sudo tail -f /var/log/monitoramento.log ```
+     * Abra o Discord e aguarde até um minuto pro sistema de alertas enviar a seguinte notificação:
+       ![b32f2fe8-b217-4c52-8b80-4584f517ec2f](https://github.com/user-attachments/assets/3957bda5-2652-4ab0-b2fd-448e1ef44585)
+ * Para iniciar o servidor nginx novamente basta seguir o seguinte comando: ```sudo systemctl start nginx ```.       
+
+   
+
+        
+
+
+
 
     

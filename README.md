@@ -116,7 +116,7 @@ Este projeto configura uma infraestrutura na AWS baseada em **Linux**, utilizand
   * Crie o diretório monitoramento em /opt/:   ```sudo mkdir /opt/monitoramento```
   * Caminhe até o diretório monitoramento: ```cd /opt/monitoramento/```
   * Crie o arquivo monitorar_site.sh em /opt/monitoramento/:   ```sudo nano monitorar_site.sh```
-  * Copie o script *Discord_logs.bash* colocando o IP e a URL do seu Discord, cole no arquivo e salve as alterações.
+  * Copie o script *Discord_logs.bash* e troque a URL do seu Discord, cole no arquivo e salve as alterações.
   * Conceda permissão de execução ao script: ```sudo chmod +x /opt/monitoramento/monitorar_site.sh```
   * Abra o editor do cron para agendar tarefas automáticas:  ```crontab -e```
   * Agende o script para rodar a cada minuto: ```*/1 * * * * /opt/monitoramento/monitorar_site.sh```

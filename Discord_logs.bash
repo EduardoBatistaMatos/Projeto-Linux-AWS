@@ -2,7 +2,7 @@
 # Define o interpretador do script como Bash.
 
 
-SITE_URL="http://COLE O IP DA SUA INSTÂNCIA"
+SITE_URL="http://localhost"
 # Variável que armazena a URL do site que será monitorado (endereço IP neste caso).
 
 
